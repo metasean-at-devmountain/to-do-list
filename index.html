@@ -1,0 +1,44 @@
+<DOCTYPE html>
+<html ng-app="ngAssessment">
+<head>
+	<title>{{header}}</title>
+	<link rel="stylesheet" type="text/css" href="style.css"></link>
+</head>
+<body ng-controller="MainController">
+
+	<h2>{{header}}</h2>
+
+ <!-- ADD NEW TASKS -->
+	<h3>Add a New Task</h3>
+	<input ng-model="newTask" class="new-task"></input>
+	<button ng-click="submitNewTask()">Add</button>
+
+ <!-- LIST ALL TASKS -->
+	<h3>Current Tasks</h3>
+	<div ng-repeat="task in tasks" ng-show="!task.status">
+		<input type="checkbox" 
+				 ng-model="task.status" 
+				 ng-change="updateTaskStatus()"
+				 name="{{task.text}}">
+		</input>
+		 - {{task.text}}
+	</div>
+
+ <!-- LIST ALL TASKS -->
+	<h3>Completed Tasks</h3>
+	<div ng-repeat="task in tasks" ng-show="task.status">
+		<input type="checkbox" 
+				 ng-model="task.status" 
+				 ng-change="updateTaskStatus()"
+				 name="{{task.text}}">
+		</input>
+		 - {{task.text}}
+	</div>
+
+ <!-- SCRIPT FILE LINKS -->
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/mainController.js"></script>
+	<script type="text/javascript" src="js/mainService.js"></script>
+</body>
+</html>
